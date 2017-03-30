@@ -8,6 +8,7 @@
 POST /api/service HTTP/1.1
 {
   "name":"InfluxDB Storage Service",
+  "description": "Service that stores all device transducer data into InfluxDB"
    
 }
 ```
@@ -15,6 +16,24 @@ POST /api/service HTTP/1.1
 > Example Response:
 
 ```json
+ {
+    "_id": "58d2d1a48113446f5c8c28bf",
+    "updated_at": "2017-03-22T19:33:56.232Z",
+    "created_at": "2017-03-22T19:33:56.232Z",
+    "owner": "58d2ce808113446f5c8c28b7",
+    "name": "InfluxDB Storage Service",
+    "description": "Service that stores all device transducer data into InfluxDB",
+    "__v": 0,
+    "config_required": [],
+    "pubsub": {
+      "protocol": "MQTT",
+      "remove_thing_endpoint": "/services/58d2d1a48113446f5c8c28bf/thing/remove",
+      "update_thing_endpoint": "/services/58d2d1a48113446f5c8c28bf/thing/update",
+      "new_thing_endpoint": "/services/58d2d1a48113446f5c8c28bf/thing/new",
+      "endpoint": "/services/58d2d1a48113446f5c8c28bf"
+    },
+    "id": "58d2d1a48113446f5c8c28bf"
+  }
 
 ```
 
@@ -37,13 +56,30 @@ POST /api/service HTTP/1.1
 > Example Request :
 
 ```http
-GET /api/service/582e2b2c065b2545ded3aabd HTTP/1.1
+GET /api/service/58d2d1a48113446f5c8c28bf HTTP/1.1
 
 ```
 > Example Response :
 
 ```json
-
+  {
+    "_id": "58d2d1a48113446f5c8c28bf",
+    "updated_at": "2017-03-22T19:33:56.232Z",
+    "created_at": "2017-03-22T19:33:56.232Z",
+    "owner": "58d2ce808113446f5c8c28b7",
+    "name": "InfluxDB Storage Service",
+    "description": "Service that stores all device transducer data into InfluxDB",
+    "__v": 0,
+    "config_required": [],
+    "pubsub": {
+      "protocol": "MQTT",
+      "remove_thing_endpoint": "/services/58d2d1a48113446f5c8c28bf/thing/remove",
+      "update_thing_endpoint": "/services/58d2d1a48113446f5c8c28bf/thing/update",
+      "new_thing_endpoint": "/services/58d2d1a48113446f5c8c28bf/thing/new",
+      "endpoint": "/services/58d2d1a48113446f5c8c28bf"
+    },
+    "id": "58d2d1a48113446f5c8c28bf"
+  }
 
 ```
 ### HTTP Request
@@ -89,6 +125,7 @@ The request body can include one or more of the fields below that have to update
 |:-----|:-----|
 |name|String| 
 |description|String|
+|properties|Mixed|
 
 
 ## Delete a service
@@ -97,7 +134,7 @@ The request body can include one or more of the fields below that have to update
 > Example Request:
 
 ```http
-DELETE /api/device/582e2b2c065b2545ded3aabd HTTP/1.1
+DELETE /api/service/582e2b2c065b2545ded3aabd HTTP/1.1
 ```
 
 > Example Response :
@@ -106,9 +143,15 @@ DELETE /api/device/582e2b2c065b2545ded3aabd HTTP/1.1
 HTTP/1.1 200 OK
 ```
 ### HTTP Request
-`DELETE /api/device/<ID>`
+`DELETE /api/service/<ID>`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-ID | ID of device to delete
+ID | ID of service to delete
+
+## Add a device to a service
+## Update device service config
+## Remove a device from a service
+
+## Get all things linked to a service

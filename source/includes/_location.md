@@ -31,7 +31,10 @@ POST /api/location/582e2b2c065b2545ded3aabd HTTP/1.1
     "test": false,
     "type":"BUILDING",
     "geo_loc": {
-      "coordinates": [],
+      "coordinates": [
+        40.4509146,
+        -79.9024777
+      ],     
       "type": "Point"
     },
     "id": "58d2ce918113446f5c8c28b8"
@@ -144,7 +147,7 @@ Parameter | Description
 locationId | ID of location to update
 
 ### Request body
-The request body can include one or more of the fields below that have to updated.
+The request body can include one or more of the fields below that need to be updated.
 
 | Name | Type | 
 |:----------|:-----|

@@ -13,18 +13,10 @@
 |properties | Mixed| JSON object that can include any number of key-value pairs| No|-|
 |transducers| Array of Transducers| See the transducer resource description for more details | No|-|
 
-### Create new Gateway 
+## Create new Gateway 
 
-<span class ="operation">POST /api/gateway/ </span>
+> Example Request:
 
-- **Request body** 
-    * name 
-    * location_id
-    * type
-    * enabled
-    * pubsub
-
-** Example Request **
 ```http
 POST /api/gateway HTTP/1.1
 {
@@ -38,11 +30,9 @@ POST /api/gateway HTTP/1.1
 }
 ```
 
-** Example Response **
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
+> Example Response:
 
+```json
 {
     "_id": "5873dfefc653394e3f0966b9",
     "name": "LabGateway",
@@ -57,19 +47,18 @@ Content-Type: application/json
 }
 ```
 
-### Get all gateways
-<span class ="operation">GET /api/gateway/ </span>
 
-** Example Request **
+## Get all gateways
+
+
+> Example Request:
+
 ```http
 GET /api/gateway HTTP/1.1
 ```
+>Example Response:
 
-** Example Response **
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
+```json
  [
   {
     "_id": "5873dfefc653394e3f0966b9",
@@ -98,26 +87,19 @@ Content-Type: application/json
 
 ```
 
-### Get details of a gateway
-** Request URL **
+## Get details of a gateway
 
-<span class ="operation">GET /api/gateway/{*gatewayId*} </span>
-
-- **Request parameters**
-	* id (string) - ID of gateway to get.
-
-** Example Request **
+> Example Request:
 
 ```http
 GET /api/gateway/587e9cf0ee4cf540f8590784 HTTP/1.1
 
 ```
 
-** Example Response **
+> Example Response:
 
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
+```json
+
 {
     "_id": "587e9cf0ee4cf540f8590784",
     "name": "CICGateway",
@@ -131,20 +113,24 @@ Content-Type: application/json
     }
 }
 ```
-### Update gateway
-<span class ="operation">PUT /api/gateway/{*gatewayId*} </span>
+## Get devices linked to a gateway
 
-- **Request parameters**
-	* id (string) - ID of gateway to update
+> Example Request:
+```http
+GET /api/gateway/587e9cf0ee4cf540f8590784/devices HTTP/1.1
+```
 
-- **Request body** 
-	* name 
-	* location_id
-    * type
-    * enabled
-    * pubsub
+> Example Response:
 
-** Example Request **
+```json
+
+```
+
+## Update gateway
+
+
+> Example Request :
+
 ```http
 PUT /api/gateway/587e9cf0ee4cf540f8590784 HTTP/1.1
 
@@ -153,9 +139,9 @@ PUT /api/gateway/587e9cf0ee4cf540f8590784 HTTP/1.1
 }
 ```
 
-** Example Response **
-```http
-HTTP/1.1 200 OK
+> Example Response :
+
+```json
 {
     "_id": "587e9cf0ee4cf540f8590784",
     "name": "CICGateway_Lab",
@@ -170,20 +156,47 @@ HTTP/1.1 200 OK
 }
 ```
 
-### Delete a gateway
-<span class ="operation">DELETE /api/gateway/{*gatewayId*} </span>
 
-- **Request parameters**
+### HTTP Request
+`PUT /api/gateway/<ID>`
 
-	* id (string) - ID of gateway to delete
+### Request Parameters
 
-** Example Request **
+Parameter | Description
+--------- | -----------
+ID | ID of gateway to update
+
+### Request body
+The request body can include one or more of the fields below that have to updated.
+
+| Name | Type |
+|:-----|:-----|
+|name|String| 
+|location_id|String|
+|type|Enum|
+|enabled| Boolean|
+
+
+## Delete a gateway
+
+
+> Example Request:
+
 ```http
 DELETE /api/gateway/582e2b2c065b2545ded3aabd HTTP/1.1
 ```
 
-** Example Response **
+> Example Response :
+
 ```http
 HTTP/1.1 200 OK
 ```
+### HTTP Request
+`DELETE /api/gateway/<ID>`
+
+### Request Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of gateway to delete
 
