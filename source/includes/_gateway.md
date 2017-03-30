@@ -1,12 +1,4 @@
-
-### URLs 
-
-|URL | Supported HTTP verbs| Action
-|:----------|:-------|:-------------|
-|/api/gateway | GET, POST| Return all gateways, create new gateway|
-|/api/gateway/{*gatewayId*} | GET, PUT, DELETE| Read, update, delete a gateway|
-|/api/gateway/{*gatewayId*}/devices/ | GET | Get devices linked to a gateway |
-
+# Gateway
 ### Gateway Resource Description
 
 | Name | Type | Description | Required | Default|

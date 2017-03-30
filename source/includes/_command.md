@@ -1,7 +1,8 @@
 
-# Transducer
+# Command
 
-## Add a transducer to a device
+
+## Create new Command
 
 > Example Request:
 
@@ -28,15 +29,15 @@ POST /api/service HTTP/1.1
 
 | Name | Type | Description | Required | Default|
 |:----------|:-----|:------------|:----|:--------|
-|name | String| Name of transducer , example : Temperature| Yes| - |
-|unit|
+|name | String| Name of command, example: Open Door| Yes| - |
 
-## Get all transducers on a device
+
+## Get all commands on a device
 
 > Example Request :
 
 ```http
-GET /api/device/582e2b2c065b2545ded3aabd/transducer HTTP/1.1
+GET /api/service/582e2b2c065b2545ded3aabd HTTP/1.1
 
 ```
 > Example Response :
@@ -46,20 +47,18 @@ GET /api/device/582e2b2c065b2545ded3aabd/transducer HTTP/1.1
 
 ```
 ### HTTP Request
-`GET /api/device/<ID>/transducer`
+`GET /api/service/<ID>`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-ID| ID of device
+ID| ID of service
 
-## Update a transducer
-Updating a transducer is not supported.
+## Execute a command
 
+## Update a command
 
-## Publish to a transducer
-
-## Delete a transducer
+## Delete a command
 
 
 > Example Request:

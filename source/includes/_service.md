@@ -1,20 +1,114 @@
-### URLs 
+# Service
 
-|URL | Supported HTTP verbs| Action
-|:----------|:-------|:-------------|
-|/api/service | GET, POST| Return all services, create new service|
-|/api/service/{*serviceId*} | GET, PUT, DELETE| Read, update, delete a service|
-|/api/service/{*serviceId*}/thing/ | POST | Link a thing to this service |
+## Create new Service
 
-### Service Resource Description
+> Example Request:
+
+```http
+POST /api/service HTTP/1.1
+{
+  "name":"InfluxDB Storage Service",
+   
+}
+```
+
+> Example Response:
+
+```json
+
+```
+
+### HTTP Request
+
+`POST /api/service`
+
+
+### Request body
 
 | Name | Type | Description | Required | Default|
 |:----------|:-----|:------------|:----|:--------|
-|_id| String| Unique ID of each service| Auto-generated| - |
 |name | String| Name of service, example: InfluxDBStorageService.| Yes| - |
 |description| String| A short description of what this service does.| Yes | - |
-|pubsub.protocol| Enum {XMPP, MQTT, AMQP}| Pubsub protocol used by this service. | No |MQTT|
-|pubsub.endpoint| String| Endpoint could be mqtt topic or xmpp node| No |-|
 |properties | Mixed| Custom properties of this service. JSON object that can include any number of key-value pairs| No|-|
-|things_config|ThingsConfig| Config required from things when they link to this service. | No | -
-|things|Array| Array of things(devices, gateways etc..) that are linked to this service. This data is maintained by the database and returned in a GET request| No |-|
+|config_required|ThingsConfig| Config required from things when they link to this service. | No | -
+
+## Get details of a service
+
+> Example Request :
+
+```http
+GET /api/service/582e2b2c065b2545ded3aabd HTTP/1.1
+
+```
+> Example Response :
+
+```json
+
+
+```
+### HTTP Request
+`GET /api/service/<ID>`
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+ID| ID of service
+
+## Update a service
+
+> Example Request:
+
+```http
+PUT /api/service/582e2b2c065b2545ded3aabd HTTP/1.1
+
+{
+	"name" : ""
+}
+```
+> Example Response:
+
+```json
+{
+  
+  }
+```
+
+### HTTP Request
+`PUT /api/service/<ID>`
+
+### Request Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of service to update
+
+### Request body
+The request body can include one or more of the fields below that have to updated.
+
+| Name | Type |
+|:-----|:-----|
+|name|String| 
+|description|String|
+
+
+## Delete a service
+
+
+> Example Request:
+
+```http
+DELETE /api/device/582e2b2c065b2545ded3aabd HTTP/1.1
+```
+
+> Example Response :
+
+```http
+HTTP/1.1 200 OK
+```
+### HTTP Request
+`DELETE /api/device/<ID>`
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+ID | ID of device to delete

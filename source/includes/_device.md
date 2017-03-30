@@ -1,39 +1,119 @@
 # Device
 
-## URLs 
+## Create new Device 
+
+> Example Request:
+
+```http
+POST /api/device HTTP/1.1
+{
+  "name":"Lora",
+   
+}
+```
+
+> Example Response:
+
+```json
+
+```
+
+### HTTP Request
+
+`POST /api/device`
 
 
-|URL | Supported HTTP verbs| Action
-|:----------|:-------|:-------------|
-|/api/device |  POST| Create new device |
-|/api/device/{*deviceId*} | GET, PUT, DELETE| Read, Update , Delete a device|
-|/api/device/{*deviceId*}/transducer | POST, GET | Create new transducer, get all transducers for a given device|
-|/api/device/{*deviceId*}/transducer/{*transducerId*}| POST,  DELETE| Publish to, Delete a transducer|
-
-## Device Resource Description
-
+### Request body
 | Name | Type | Description | Required | Default|
 |:----------|:-----|:------------|:----|:--------|
-|_id|String| Unique ID for each device| Auto-Generated| -|
 |name|String| Name of device| Yes|-|
 |type|Enum {LORA, TWIST, FIREFLY, BOSCH_XDK}| Type of device.| Yes | -|
 |location_id| String| Location ID | 
 |enabled | Boolean| If set to false, then the device is not monitored| No | True|
-|pubsub.protocol| Enum {XMPP, MQTT, AMQP}| Pubsub protocol used by this device | No |MQTT|
-|pubsub.endpoint| String| Endpoint could be mqtt topic or xmpp node| No |-|
 |properties | Mixed| JSON object that can include any number of key-value pairs| No|-|
-|transducers| Array of Transducers | See the transducer resource description for more details.| No|-|
 
 
-## Create new Device 
+## Create new Device using a template
 
-<span class ="operation">POST /api/device/ </span>
+## Get details of a device
 
-- **Request body** 
-    * name 
-    * location_id
-    * type
-    * enabled
-    * pubsub
-    * gateway_id
+> Example Request :
+
+```http
+GET /api/device/582e2b2c065b2545ded3aabd HTTP/1.1
+
+```
+> Example Response :
+
+```json
+
+
+```
+### HTTP Request
+`GET /api/device/<ID>`
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+ID| ID of device
+
+## Update a device
+
+> Example Request:
+
+```http
+PUT /api/device/582e2b2c065b2545ded3aabd HTTP/1.1
+
+{
+	"name" : ""
+}
+```
+> Example Response:
+
+```json
+{
+  
+  }
+```
+
+### HTTP Request
+`PUT /api/device/<ID>`
+
+### Request Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of device to update
+
+### Request body
+The request body can include one or more of the fields below that have to updated.
+| Name | Type 
+|:----------|:-----|
+|name|String| 
+|type|Enum {LORA, TWIST, FIREFLY, BOSCH_XDK}| 
+|location_id| String|  
+|enabled | Boolean| 
+|properties | Mixed| 
+
+
+## Delete a device
+
+> Example Request:
+
+```http
+DELETE /api/device/582e2b2c065b2545ded3aabd HTTP/1.1
+```
+
+> Example Response :
+
+```http
+HTTP/1.1 200 OK
+```
+### HTTP Request
+`DELETE /api/device/<ID>`
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+ID | ID of device to delete
 
