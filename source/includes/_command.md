@@ -9,7 +9,7 @@
 ```http
 POST /api/service HTTP/1.1
 {
-  "name":"InfluxDB Storage Service",
+  "name":"Open Door",
    
 }
 ```

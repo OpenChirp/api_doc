@@ -1,6 +1,23 @@
 
 # Device Template
 
+## Get all device templates
+
+> Example Request:
+
+```http
+GET /api/devicetemplate HTTP/1.1
+```
+
+> Example Response:
+
+```json
+TODO
+```
+
+### HTTP Request
+`GET /api/devicetemplate`
+
 ## Create new device template
 
 > Example Request:
@@ -8,8 +25,8 @@
 ```http
 POST /api/devicetemplate HTTP/1.1
 {
-  "name":"InfluxDB Storage Service",
-   
+  "name":"Lora Template",
+  "device_id":"58d445bc2881ee1032d63508"  
 }
 ```
 
@@ -23,21 +40,20 @@ POST /api/devicetemplate HTTP/1.1
 
 `POST /api/devicetemplate`
 
-
 ### Request body
 
 | Name | Type | Description | Required | Default|
 |:----------|:-----|:------------|:----|:--------|
-|name | String| Name of service, example: InfluxDBStorageService.| Yes| - |
-|description| String| A short description of what this service does.| Yes | - |
-|device_id|String|
+|name | String| Name of device template Yes| - |
+|description| String| A short description of what this template contains.| Yes | - |
+|device_id|String| ID of device from which to generate this template| Yes|-|
 
 ## Get details of a template
 
 > Example Request :
 
 ```http
-GET /api/service/582e2b2c065b2545ded3aabd HTTP/1.1
+GET /api/devicetemplate/582e2b2c065b2545ded3aabd HTTP/1.1
 
 ```
 > Example Response :
@@ -47,12 +63,12 @@ GET /api/service/582e2b2c065b2545ded3aabd HTTP/1.1
 
 ```
 ### HTTP Request
-`GET /api/service/<ID>`
+`GET /api/devicetemplate/<ID>`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-ID| ID of service
+ID| ID of device template
 
 ## Update a device template
 

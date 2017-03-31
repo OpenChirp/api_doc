@@ -1,17 +1,4 @@
 # Gateway
-### Gateway Resource Description
-
-| Name | Type | Description | Required | Default|
-|:----------|:-----|:------------|:----|:--------|
-|_id|String| Unique ID for each gateway| Auto-Generated| -|
-|name|String| Name of gateway| Yes|-|
-|type|Enum {LORA, ZIGBEE}| Type of gateway.| Yes | -|
-|location_id| String| Location ID | 
-|enabled | Boolean| If set to false, then the gateway is not monitored| No | True|
-|pubsub.protocol| Enum {XMPP, MQTT, AMQP}| Pubsub protocol used by this gateway | No |MQTT|
-|pubsub.endpoint| String| Endpoint could be mqtt topic or xmpp node| No |-|
-|properties | Mixed| JSON object that can include any number of key-value pairs| No|-|
-|transducers| Array of Transducers| See the transducer resource description for more details | No|-|
 
 ## Create new Gateway 
 
@@ -22,11 +9,7 @@ POST /api/gateway HTTP/1.1
 {
     "name": "LabGateway",
     "location_id": "5833479babdafd7b34858958",
-    "type": "LORA",
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/gateways/LabGateway"
-    } 
+    "type": "LORA"
 }
 ```
 
@@ -39,17 +22,23 @@ POST /api/gateway HTTP/1.1
     "location_id": "5833479babdafd7b34858958",
     "type": "LORA",
     "__v": 0,
-    "enabled": true,
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/gateways/LabGateway"
-    }  
+    "enabled": true
 }
 ```
 
+### HTTP Request
+`POST /api/gateway`
+
+### Request Body
+| Name | Type | Description | Required | Default|
+|:----------|:-----|:------------|:----|:--------|
+|name|String| Name of gateway| Yes|-|
+|type|Enum {LORA, ZIGBEE}| Type of gateway.| Yes | -|
+|location_id| String| Location ID | 
+|enabled | Boolean| If set to false, then the gateway is not monitored| No | True|
+|properties | Mixed| JSON object that can include any number of key-value pairs| No|-|
 
 ## Get all gateways
-
 
 > Example Request:
 
@@ -66,11 +55,7 @@ GET /api/gateway HTTP/1.1
     "location_id": "5833479babdafd7b34858958",
     "type": "LORA",
     "__v": 0,
-    "enabled": true,
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/gateways/LabGateway"
-    }
+    "enabled": true
   },
   {
     "_id": "587e9cf0ee4cf540f8590784",
@@ -78,14 +63,13 @@ GET /api/gateway HTTP/1.1
     "location_id": "5833479babdafd7b34858958",
     "type": "LORA",
     "__v": 0,
-    "enabled": true,
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/gateways/CICGateway"
-    }
+    "enabled": true
  ]    
 
 ```
+
+### HTTP Request
+`GET /api/gateway`
 
 ## Get details of a gateway
 
@@ -106,16 +90,21 @@ GET /api/gateway/587e9cf0ee4cf540f8590784 HTTP/1.1
     "location_id": "5833479babdafd7b34858958",
     "type": "LORA",
     "__v": 0,
-    "enabled": true,
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/gateways/CICGateway"
-    }
+    "enabled": true
 }
 ```
+### HTTP Request
+`GET /api/gateway/<gatewayID> `
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+gatewayID| ID of gateway
+
 ## Get devices linked to a gateway
 
 > Example Request:
+
 ```http
 GET /api/gateway/587e9cf0ee4cf540f8590784/devices HTTP/1.1
 ```
@@ -123,11 +112,11 @@ GET /api/gateway/587e9cf0ee4cf540f8590784/devices HTTP/1.1
 > Example Response:
 
 ```json
+TODO
 
 ```
 
 ## Update gateway
-
 
 > Example Request :
 
@@ -148,11 +137,7 @@ PUT /api/gateway/587e9cf0ee4cf540f8590784 HTTP/1.1
     "location_id": "5833479babdafd7b34858958",
     "type": "LORA",
     "__v": 0,
-    "enabled": true,
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/gateways/CICGateway"
-    }
+    "enabled": true
 }
 ```
 

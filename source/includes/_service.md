@@ -1,5 +1,16 @@
 # Service
 
+## Get all services
+
+> Example Request:
+
+```http
+GET /api/service HTTP/1.1
+```
+
+> Example Response:
+
+
 ## Create new Service
 
 > Example Request:

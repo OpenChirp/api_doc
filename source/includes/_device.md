@@ -114,15 +114,11 @@ POST /api/device HTTP/1.1
 
 
 ### Request body
+All the fields in the create device request above can be included plus a template_id which is used to create transducers, commands and linked services.
+
 | Name | Type | Description | Required | Default|
 |:----------|:-----|:------------|:----|:--------|
-|name|String| Name of device| Yes|-|
-|type|Enum {LORA, TWIST, FIREFLY, BOSCH_XDK}| Type of device.| No | -|
-|location_id| String| Location ID | No | - |
-|gateway_id| String| Gateway ID | No | - | 
-|enabled | Boolean| If set to false, then the device is not monitored| No | True|
-|properties | Mixed| JSON object that can include any number of key-value pairs| No|-|
-|template_id| String| Device template ID. Any transducers, commands and linked services in the template will be added to device|No|-|
+|template_id| String| Device template ID. All transducers, commands and linked services in the template will be added to the device.|No|-|
 
 ## Get details of a device
 
@@ -207,6 +203,7 @@ ID | ID of device to update
 
 ### Request body
 The request body can include one or more of the fields below that need to be updated.
+
 | Name | Type 
 |:----------|:-----|
 |name|String| 
