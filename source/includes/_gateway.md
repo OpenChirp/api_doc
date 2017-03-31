@@ -7,8 +7,8 @@
 ```http
 POST /api/gateway HTTP/1.1
 {
-    "name": "LabGateway",
-    "location_id": "5833479babdafd7b34858958",
+    "name": "Lora Gateway",
+    "location_id": "58d2cf268113446f5c8c28bc",
     "type": "LORA"
 }
 ```
@@ -17,12 +17,19 @@ POST /api/gateway HTTP/1.1
 
 ```json
 {
-    "_id": "5873dfefc653394e3f0966b9",
-    "name": "LabGateway",
-    "location_id": "5833479babdafd7b34858958",
+    "_id": "58dc5e8ee235562ddbc9f22e",
+    "updated_at": "2017-03-30T01:25:34.907Z",
+    "created_at": "2017-03-30T01:25:34.907Z",
+    "owner": "58d2ce808113446f5c8c28b7",
+    "name": "Lora Gateway",
     "type": "LORA",
+    "location_id": "58d2cf268113446f5c8c28bc",
     "__v": 0,
-    "enabled": true
+    "enabled": true,
+    "pubsub": {
+      "protocol": "MQTT"
+    },
+    "id": "58dc5e8ee235562ddbc9f22e"
 }
 ```
 
@@ -76,22 +83,29 @@ GET /api/gateway HTTP/1.1
 > Example Request:
 
 ```http
-GET /api/gateway/587e9cf0ee4cf540f8590784 HTTP/1.1
+GET /api/gateway/58dc5e8ee235562ddbc9f22e HTTP/1.1
 
 ```
 
 > Example Response:
 
 ```json
-
-{
-    "_id": "587e9cf0ee4cf540f8590784",
-    "name": "CICGateway",
-    "location_id": "5833479babdafd7b34858958",
+  {
+    "_id": "58dc5e8ee235562ddbc9f22e",
+    "updated_at": "2017-03-30T01:25:34.907Z",
+    "created_at": "2017-03-30T01:25:34.907Z",
+    "owner": "58d2ce808113446f5c8c28b7",
+    "name": "Lora Gateway",
     "type": "LORA",
+    "location_id": "58d2cf268113446f5c8c28bc",
     "__v": 0,
-    "enabled": true
-}
+    "enabled": true,
+    "pubsub": {
+      "protocol": "MQTT"
+    },
+    "id": "58dc5e8ee235562ddbc9f22e"
+  }
+
 ```
 ### HTTP Request
 `GET /api/gateway/<gatewayID> `
@@ -106,15 +120,43 @@ gatewayID| ID of gateway
 > Example Request:
 
 ```http
-GET /api/gateway/587e9cf0ee4cf540f8590784/devices HTTP/1.1
+GET /api/gateway/58dc5e8ee235562ddbc9f22e/devices HTTP/1.1
 ```
 
 > Example Response:
 
 ```json
-TODO
+[
+  {
+    "_id": "58de6b5ce235562ddbc9f235",
+    "updated_at": "2017-03-31T14:44:44.557Z",
+    "created_at": "2017-03-31T14:44:44.557Z",
+    "owner": "58d2ce808113446f5c8c28b7",
+    "name": " Lora Lab Device",
+    "type": "LORA",
+    "gateway_id": "58dc5e8ee235562ddbc9f22e",
+    "__v": 0,
+    "enabled": true,
+    "linked_services": [],
+    "commands": [],
+    "transducers": [],
+    "pubsub": {
+      "protocol": "MQTT",
+      "endpoint": "/devices/58de6b5ce235562ddbc9f235"
+    },
+    "id": "58de6b5ce235562ddbc9f235"
+  }
+]
 
 ```
+
+### HTTP Request
+` GET /api/gateway/<gatewayID>/devices`
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+gatewayID| ID of gateway
 
 ## Update gateway
 

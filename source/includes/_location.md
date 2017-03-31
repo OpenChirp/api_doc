@@ -178,6 +178,7 @@ Parameter | Description
 --------- | -----------
 locationId | ID of location to delete
 
+<aside class="notice"> If a location has child locations, devices or gateways, then it cannot be deleted. </aside>
 
 ## Get gateways at a location 
 
