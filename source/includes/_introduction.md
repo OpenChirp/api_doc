@@ -6,10 +6,10 @@ The document specifies a RESTful API for interacting with the OpenChirp infrastr
 ## Authorization
 ## Errors
 
-The OpenChirp API uses the following error codes:
+The OpenChirp REST API uses the following error codes:
 
 
-Error Code | Meaning
+HTTP Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- The json in request body is not well-formed.
 401 | Unauthorized -- Invalid credentials.
