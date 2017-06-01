@@ -1192,6 +1192,142 @@
 
 <p>The json in the request body is published as-is to the transducer topic.</p>
 
+<h2 id="get-values-from-a-transducer">Get values from a transducer</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/590b8ab0c1d7ee2313ee421c/transducer/590cf1d043fc916594746b1b</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Using <code class="prettyprint">cURL</code>:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -G <span class="s2">"http://openchirp.andrew.cmu.edu:7000/api/device/590b8ab0c1d7ee2313ee421c/transducer/590cf1d043fc916594746b1b"</span>
+</code></pre>
+<blockquote>
+<p>Example Response. Returns <strong>all values in a chunked stream</strong> (chunks have a size of 10,000 points), ordered by ascending time order:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"590b8ab0c1d7ee2313ee421c_door_state"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+            </span><span class="err">//</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">values</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">returned</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">chunked</span><span class="w"> </span><span class="err">stream</span><span class="w"> 
+            </span><span class="err">...</span><span class="w">
+</span></code></pre>
+<p>Performing an HTTP GET to a transducer resource will return the values stored in the database in ascending time order. 
+Additional parameters allow you to define start and end times, maximum number of returned values, and paginate through the values.</p>
+
+<p>The default output format is JSON. It is possible to specify the output format using the Content-Type HTTP header, where:</p>
+
+<ol>
+<li><code class="prettyprint">text/csv</code> or <code class="prettyprint">application/csv</code> specifies CSV output</li>
+<li>any other content type will produce JSON output (default)</li>
+</ol>
+
+<aside class="notice"> 
+By default, results are returned in a chunked stream (chunks have a size of 10,000 points).
+</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/device/&lt;deviceID&gt;/transducer/&lt;transducerID&gt;?[stime=&lt;stime&gt;&amp;etime=&lt;etime&gt;&amp;limit=&lt;limit&gt;&amp;page=&lt;page&gt;]</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td>ID of device.</td>
+</tr>
+<tr>
+<td>transducerID</td>
+<td>ID of transducer</td>
+</tr>
+<tr>
+<td>stime</td>
+<td>See <a href="#Start-and-End-Times">Start and End Times</a></td>
+</tr>
+<tr>
+<td>etime</td>
+<td>See <a href="#Start-and-End-Times">Start and End Times</a></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>See <a href="#Limit-and-Paginating">Limit and Paginating</a></td>
+</tr>
+<tr>
+<td>page</td>
+<td>See <a href="#Limit-and-Paginating">Limit and Paginating</a></td>
+</tr>
+</tbody></table>
+
+<p>Parameters <code class="prettyprint">stime</code>, <code class="prettyprint">etime</code>, <code class="prettyprint">limit</code> and <code class="prettyprint">page</code> are not mandatory, and they can be freely combined, for example to return 5000 results (<code class="prettyprint">limit=5000</code>) from a week ago (<code class="prettyprint">stime=now - 1w</code>).</p>
+
+<h3 id="start-and-end-times">Start and End Times</h3>
+
+<blockquote>
+<p>Example Request. Return values from the last week, by passing <code class="prettyprint">stime=now() - 1w</code> (note parameters are URL encoded and there must be spaces (%20) in the time specification):</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3%20%3Fstime%3Dnow%28%29%20-%201w</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Using <code class="prettyprint">cURL</code> (note the <code class="prettyprint">--data-urlencode</code> and the spaces in the time specification):</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -G <span class="s2">"http://openchirp.andrew.cmu.edu:7000/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3"</span> --data-urlencode “stime<span class="o">=</span>now<span class="o">()</span> - 1w<span class="s2">"
+</span></code></pre>
+<p>It is possible to define start and end times using the <code class="prettyprint">stime</code> and <code class="prettyprint">etime</code> query string parameters. The time specifications are according to <a href="https://docs.influxdata.com/influxdb/v0.9/query_language/data_exploration/#time-syntax-in-queries">InfluxDB</a>. </p>
+
+<p>For example, <code class="prettyprint">stime=now() - 1w</code> indicates that the query will return values starting one week ago. 
+You can use simular time specifications using ‘d’ (days), ‘h’ (hours), ‘m’ (minutes), ’s’ (seconds), ‘ms’ (milliseconds) and ‘u’ (microseconds).</p>
+
+<p>Other time specification examples:</p>
+
+<ol>
+<li><code class="prettyprint">stime=stime=now() - 1w&amp;etime=stime=now() - 1d</code>: values from one week ago until yesterday.</li>
+<li><code class="prettyprint">stime=stime=2015-08-18 23:00:01.232000000&amp;etime=stime=2015-09-19</code>: values between August 18, 2015 23:00:01.232000000 and September 19, 2015 00:00:00.</li>
+</ol>
+
+<p>Please check <a href="https://docs.influxdata.com/influxdb/v0.9/query_language/data_exploration/#time-syntax-in-queries">InfluxDB’s documentation section on Time syntax in Queries</a> for details.</p>
+
+<aside class="notice"> 
+The spaces between the ‘-‘ operator of time specifications are important. Be sure to URL encode parameters (see examples). 
+</aside>
+
+<h3 id="limit-and-paginating">Limit and Paginating</h3>
+
+<blockquote>
+<p>Example Request. Return the first 5000 values from a week ago in CSV format:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3%20%3Fstime%3Dnow%28%29%20-%201w%26limit%3D5000</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+Content-Type: application/csv
+</code></pre>
+<blockquote>
+<p>Using <code class="prettyprint">cURL</code>:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Content-Type: application/csv"</span> -G <span class="s2">"http://openchirp.andrew.cmu.edu:7000/api/device/&lt;deviceID&gt;/transducer/&lt;transducerID&gt;"</span> --data-urlencode <span class="s2">"limit=5000"</span> --data-urlencode <span class="s2">"stime=now() - 1w"</span>
+</code></pre>
+<p>You can set a limit to the number of points returned using the <code class="prettyprint">limit</code> query string parameter, which can have a maximum value of 10,000 (<code class="prettyprint">limit=0</code> is equal to <code class="prettyprint">limit=10000</code>). </p>
+
+<p>The parameter <code class="prettyprint">page</code> can be used to paginate thought the results, where each page has a size defined by the <code class="prettyprint">limit</code> argument or defaults to 10,000 if no <code class="prettyprint">limit</code> is given.</p>
+
+<aside class="notice"> 
+When you provide a <b>limit</b> or <b>page</b> parameter, results are returned in a single (non-chunked) response.
+</aside>
+
 <h2 id="delete-a-transducer">Delete a transducer</h2>
 
 <blockquote>
