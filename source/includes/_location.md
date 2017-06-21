@@ -9,7 +9,7 @@ POST /api/location/582e2b2c065b2545ded3aabd HTTP/1.1
 {
   "name":"CIC",
   "type":"BUILDING",
-    "geoLoc": {
+    "geo_loc": {
       "coordinates": [
         40.4509146,
         -79.9024777
