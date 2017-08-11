@@ -234,17 +234,25 @@ GET /api/location/58d2cf268113446f5c8c28bc/devices HTTP/1.1
 
 [
 {
-_id: "598dd0330b37ba77a17bfbd0",
-name: "device1",
-location_id: "58d2cf268113446f5c8c28bc",
-pubsub: {
-protocol: "MQTT",
-endpoint: "openchirp/devices/598dd0330b37ba77a17bfbd0"
-}
-id: "598dd0330b37ba77a17bfbd0"
+    _id: "598dd0330b37ba77a17bfbd0",
+    name: "device1",
+    location_id: "58d2cf268113446f5c8c28bc",
+    pubsub: {
+      protocol: "MQTT",
+      endpoint: "openchirp/devices/598dd0330b37ba77a17bfbd0"
+      },
+    id: "598dd0330b37ba77a17bfbd0"`
 }
 ]
 ```
+### HTTP Request
+`GET /api/location/<locationId>/devices`
+
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+locationId | ID of location
 
 ## Recursively get all devices at all child locations
 
