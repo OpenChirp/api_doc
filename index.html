@@ -592,17 +592,35 @@
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">[</span><span class="w">
 </span><span class="p">{</span><span class="w">
-</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="p">,</span><span class="w">
-</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device1"</span><span class="p">,</span><span class="w">
-</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
-</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
-</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0330b37ba77a17bfbd0"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="w">
+    </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="p">,</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device1"</span><span class="p">,</span><span class="w">
+    </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0330b37ba77a17bfbd0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="err">`</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/location/&lt;locationId&gt;/devices</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>locationId</td>
+<td>ID of location</td>
+</tr>
+</tbody></table>
+
 <h2 id="recursively-get-all-devices-at-all-child-locations">Recursively get all devices at all child locations</h2>
 
 <blockquote>
