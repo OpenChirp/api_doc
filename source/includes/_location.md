@@ -266,66 +266,66 @@ GET /api/location/58d2cf268113446f5c8c28bc/alldevices HTTP/1.1
 
 ```json
 [
-{
-_id: "598dd0330b37ba77a17bfbd0",
-name: "device floor1",
-location_id: "5985343de0d1a47181511cfe",
-pubsub: {
-protocol: "MQTT",
-endpoint: "openchirp/devices/598dd0330b37ba77a17bfbd0"
-},
-id: "598dd0330b37ba77a17bfbd0"
-},
-{
-_id: "598dd0110b37ba77a17bfbce",
-name: "device floor2",
-location_id: "59853448e0d1a47181511cff",
-pubsub: {
-protocol: "MQTT",
-endpoint: "openchirp/devices/598dd0110b37ba77a17bfbce"
-},
-id: "598dd0110b37ba77a17bfbce"
-},
-{
-_id: "598dd04f0b37ba77a17bfbd1",
-name: "device floor3",
-location_id: "5985345ce0d1a47181511d00",
-pubsub: {
-protocol: "MQTT",
-endpoint: "openchirp/devices/598dd04f0b37ba77a17bfbd1"
-},
-id: "598dd04f0b37ba77a17bfbd1"
-},
-{
-_id: "598dd01b0b37ba77a17bfbcf",
-name: "device floor4",
-location_id: "59853aa5e0d1a47181511d01",
-pubsub: {
-protocol: "MQTT",
-endpoint: "openchirp/devices/598dd01b0b37ba77a17bfbcf"
-},
-id: "598dd01b0b37ba77a17bfbcf"
-},
-{
-_id: "598dd0570b37ba77a17bfbd2",
-name: "device floor5",
-location_id: "59853aade0d1a47181511d02",
-pubsub: {
-protocol: "MQTT",
-endpoint: "openchirp/devices/598dd0570b37ba77a17bfbd2"
-},
-id: "598dd0570b37ba77a17bfbd2"
-},
-{
-_id: "598dd0660b37ba77a17bfbd3",
-name: "device floor5 2",
-location_id: "59853aade0d1a47181511d02",
-pubsub: {
-protocol: "MQTT",
-endpoint: "openchirp/devices/598dd0660b37ba77a17bfbd3"
-},
-id: "598dd0660b37ba77a17bfbd3"
-}
+  {
+  _id: "598dd0330b37ba77a17bfbd0",
+  name: "device floor1",
+  location_id: "5985343de0d1a47181511cfe",
+  pubsub: {
+    protocol: "MQTT",
+    endpoint: "openchirp/devices/598dd0330b37ba77a17bfbd0"
+    },
+  id: "598dd0330b37ba77a17bfbd0"
+  },
+  {
+  _id: "598dd0110b37ba77a17bfbce",
+  name: "device floor2",
+  location_id: "59853448e0d1a47181511cff",
+  pubsub: {
+    protocol: "MQTT",
+    endpoint: "openchirp/devices/598dd0110b37ba77a17bfbce"
+  },
+  id: "598dd0110b37ba77a17bfbce"
+  },
+  {
+  _id: "598dd04f0b37ba77a17bfbd1",
+  name: "device floor3",
+  location_id: "5985345ce0d1a47181511d00",
+  pubsub: {
+    protocol: "MQTT",
+    endpoint: "openchirp/devices/598dd04f0b37ba77a17bfbd1"
+    },
+  id: "598dd04f0b37ba77a17bfbd1"
+  },
+  {
+  _id: "598dd01b0b37ba77a17bfbcf",
+  name: "device floor4",
+  location_id: "59853aa5e0d1a47181511d01",
+  pubsub: {
+    protocol: "MQTT",
+    endpoint: "openchirp/devices/598dd01b0b37ba77a17bfbcf"
+    },
+  id: "598dd01b0b37ba77a17bfbcf"
+  },
+  {
+  _id: "598dd0570b37ba77a17bfbd2",
+  name: "device floor5",
+  location_id: "59853aade0d1a47181511d02",
+  pubsub: {
+    protocol: "MQTT",
+    endpoint: "openchirp/devices/598dd0570b37ba77a17bfbd2"
+    },
+  id: "598dd0570b37ba77a17bfbd2"
+  },
+  {
+  _id: "598dd0660b37ba77a17bfbd3",
+  name: "device floor5 2",
+  location_id: "59853aade0d1a47181511d02",
+  pubsub: {
+    protocol: "MQTT",
+    endpoint: "openchirp/devices/598dd0660b37ba77a17bfbd3"
+    },
+  id: "598dd0660b37ba77a17bfbd3"
+  }
 ]
 ```
 
