@@ -231,69 +231,98 @@ GET /api/location/58d2cf268113446f5c8c28bc/devices HTTP/1.1
 > Example Response: 
 
 ```json
+
 [
-  {
-    "_id": "58d2d3078113446f5c8c28c0",
-    "updated_at": "2017-03-22T19:46:01.186Z",
-    "created_at": "2017-03-22T19:39:51.961Z",
-    "owner": "58d2ce808113446f5c8c28b7",
-    "name": "Lab Door",
-    "location_id": "58d2cf268113446f5c8c28bc",
-    "__v": 3,
-    "enabled": true,
-    "linked_services": [],
-    "commands": [
-      {
-        "name": "Open Door",
-        "value": "1",
-        "transducer_id": "58d2d4398113446f5c8c28c3",
-        "_id": "58d2d46d8113446f5c8c28c4"
-      },
-      {
-        "name": "Close Door",
-        "value": "0",
-        "transducer_id": "58d2d4398113446f5c8c28c3",
-        "_id": "58d2d4798113446f5c8c28c5"
-      }
-    ],
-    "transducers": [
-      {
-        "name": "Door_State",
-        "unit": "Integer",
-        "_id": "58d2d4398113446f5c8c28c3",
-        "is_actuable": true
-      }
-    ],
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/devices/58d2d3078113446f5c8c28c0"
-    },
-    "id": "58d2d3078113446f5c8c28c0"
-  },
-  {
-    "_id": "58d2d3468113446f5c8c28c2",
-    "updated_at": "2017-03-22T19:40:54.798Z",
-    "created_at": "2017-03-22T19:40:54.798Z",
-    "owner": "58d2ce808113446f5c8c28b7",
-    "name": "Xdk Sensor1",
-    "location_id": "58d2cf268113446f5c8c28bc",
-    "type": "BOSCH_XDK",
-    "__v": 0,
-    "enabled": true,
-    "linked_services": [],
-    "commands": [],
-    "transducers": [],
-    "pubsub": {
-      "protocol": "MQTT",
-      "endpoint": "/devices/58d2d3468113446f5c8c28c2"
-    },
-    "id": "58d2d3468113446f5c8c28c2"
-  }
+{
+_id: "598dd0330b37ba77a17bfbd0",
+name: "device1",
+location_id: "58d2cf268113446f5c8c28bc",
+pubsub: {
+protocol: "MQTT",
+endpoint: "openchirp/devices/598dd0330b37ba77a17bfbd0"
+}
+id: "598dd0330b37ba77a17bfbd0"
+}
+]
+```
+
+## Recursively get all devices at all child locations
+
+> Example Request:
+
+```http
+GET /api/location/58d2cf268113446f5c8c28bc/alldevices HTTP/1.1
+```
+
+> Example Response: 
+
+```json
+[
+{
+_id: "598dd0330b37ba77a17bfbd0",
+name: "device floor1",
+location_id: "5985343de0d1a47181511cfe",
+pubsub: {
+protocol: "MQTT",
+endpoint: "openchirp/devices/598dd0330b37ba77a17bfbd0"
+},
+id: "598dd0330b37ba77a17bfbd0"
+},
+{
+_id: "598dd0110b37ba77a17bfbce",
+name: "device floor2",
+location_id: "59853448e0d1a47181511cff",
+pubsub: {
+protocol: "MQTT",
+endpoint: "openchirp/devices/598dd0110b37ba77a17bfbce"
+},
+id: "598dd0110b37ba77a17bfbce"
+},
+{
+_id: "598dd04f0b37ba77a17bfbd1",
+name: "device floor3",
+location_id: "5985345ce0d1a47181511d00",
+pubsub: {
+protocol: "MQTT",
+endpoint: "openchirp/devices/598dd04f0b37ba77a17bfbd1"
+},
+id: "598dd04f0b37ba77a17bfbd1"
+},
+{
+_id: "598dd01b0b37ba77a17bfbcf",
+name: "device floor4",
+location_id: "59853aa5e0d1a47181511d01",
+pubsub: {
+protocol: "MQTT",
+endpoint: "openchirp/devices/598dd01b0b37ba77a17bfbcf"
+},
+id: "598dd01b0b37ba77a17bfbcf"
+},
+{
+_id: "598dd0570b37ba77a17bfbd2",
+name: "device floor5",
+location_id: "59853aade0d1a47181511d02",
+pubsub: {
+protocol: "MQTT",
+endpoint: "openchirp/devices/598dd0570b37ba77a17bfbd2"
+},
+id: "598dd0570b37ba77a17bfbd2"
+},
+{
+_id: "598dd0660b37ba77a17bfbd3",
+name: "device floor5 2",
+location_id: "59853aade0d1a47181511d02",
+pubsub: {
+protocol: "MQTT",
+endpoint: "openchirp/devices/598dd0660b37ba77a17bfbd3"
+},
+id: "598dd0660b37ba77a17bfbd3"
+}
 ]
 ```
 
 ### HTTP Request
-`GET /api/location/<locationId>/devices`
+`GET /api/location/<locationId>/alldevices`
 
 
 ### Request Parameters
