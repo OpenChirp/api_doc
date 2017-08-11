@@ -589,69 +589,96 @@
 <blockquote>
 <p>Example Response: </p>
 </blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="p">,</span><span class="w">
+</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device1"</span><span class="p">,</span><span class="w">
+</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0330b37ba77a17bfbd0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h2 id="recursively-get-all-devices-at-all-child-locations">Recursively get all devices at all child locations</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/location/58d2cf268113446f5c8c28bc/alldevices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response: </p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3078113446f5c8c28c0"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:46:01.186Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:39:51.961Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lab Door"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open Door"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d46d8113446f5c8c28c4"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Close Door"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4798113446f5c8c28c5"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Door_State"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integer"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58d2d3078113446f5c8c28c0"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3078113446f5c8c28c0"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3468113446f5c8c28c2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:40:54.798Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:40:54.798Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Xdk Sensor1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOSCH_XDK"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58d2d3468113446f5c8c28c2"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3468113446f5c8c28c2"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="p">,</span><span class="w">
+</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor1"</span><span class="p">,</span><span class="w">
+</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"5985343de0d1a47181511cfe"</span><span class="p">,</span><span class="w">
+</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0330b37ba77a17bfbd0"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0110b37ba77a17bfbce"</span><span class="p">,</span><span class="w">
+</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor2"</span><span class="p">,</span><span class="w">
+</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853448e0d1a47181511cff"</span><span class="p">,</span><span class="w">
+</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0110b37ba77a17bfbce"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0110b37ba77a17bfbce"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd04f0b37ba77a17bfbd1"</span><span class="p">,</span><span class="w">
+</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor3"</span><span class="p">,</span><span class="w">
+</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"5985345ce0d1a47181511d00"</span><span class="p">,</span><span class="w">
+</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd04f0b37ba77a17bfbd1"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd04f0b37ba77a17bfbd1"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd01b0b37ba77a17bfbcf"</span><span class="p">,</span><span class="w">
+</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor4"</span><span class="p">,</span><span class="w">
+</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853aa5e0d1a47181511d01"</span><span class="p">,</span><span class="w">
+</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd01b0b37ba77a17bfbcf"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd01b0b37ba77a17bfbcf"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0570b37ba77a17bfbd2"</span><span class="p">,</span><span class="w">
+</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor5"</span><span class="p">,</span><span class="w">
+</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853aade0d1a47181511d02"</span><span class="p">,</span><span class="w">
+</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0570b37ba77a17bfbd2"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0570b37ba77a17bfbd2"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0660b37ba77a17bfbd3"</span><span class="p">,</span><span class="w">
+</span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor5 2"</span><span class="p">,</span><span class="w">
+</span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853aade0d1a47181511d02"</span><span class="p">,</span><span class="w">
+</span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+</span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0660b37ba77a17bfbd3"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0660b37ba77a17bfbd3"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET /api/location/&lt;locationId&gt;/devices</code></p>
+<p><code class="prettyprint">GET /api/location/&lt;locationId&gt;/alldevices</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
