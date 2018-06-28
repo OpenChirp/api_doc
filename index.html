@@ -1,0 +1,2546 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>OpenChirp API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="openchirp-api-reference">OpenChirp API Reference</h1>
+
+<p>The document specifies a RESTful API for interacting with the OpenChirp infrastructure. Usage of the API is via the HTTP protocol. All operations are defined as GET, POST, PUT, DELETE on resource URLs. Some examples of resources in the OpenChirp software stack are Location, Device, Gateway, Service etc. All these resources are represented in JSON.</p>
+
+<h2 id="errors">Errors</h2>
+
+<p>The OpenChirp REST API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>HTTP Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; The json in request body is not well-formed.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Invalid credentials.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; Logged in user does not have permissions to do this operation.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="location">Location</h1>
+
+<h2 id="create-new-location">Create new Location</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/location/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">  "name":"CIC",</span>
+<span class="s">  "type":"BUILDING",</span>
+<span class="s">    "geo_loc": {</span>
+<span class="s">      "coordinates": [</span>
+<span class="s">        40.4509146,</span>
+<span class="s">        -79.9024777</span>
+<span class="s">      ]     </span>
+<span class="s">    }    </span>
+<span class="s">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce918113446f5c8c28b8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-29T21:18:42.684Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:20:49.271Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CIC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"BUILDING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"geo_loc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mf">40.4509146</span><span class="p">,</span><span class="w">
+        </span><span class="mf">-79.9024777</span><span class="w">
+      </span><span class="p">],</span><span class="w">     
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce918113446f5c8c28b8"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/location/&lt;parentLocationId&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>parentLocationId</td>
+<td>ID of parent location</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request body</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Name of location</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">type</td>
+<td style="text-align: left">Enum {BUILDING, INDOOR}</td>
+<td style="text-align: left">If the location is a building or an indoor location inside a building. If this location is a building, then geoLoc should be set</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">test</td>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">If set to true, then the location is not visible in tree</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">False</td>
+</tr>
+<tr>
+<td style="text-align: left">geo_loc.type</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Type of geo-location : Point, Line etc</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">Point</td>
+</tr>
+<tr>
+<td style="text-align: left">geo_loc.coordinates</td>
+<td style="text-align: left">Number</td>
+<td style="text-align: left">Coordinates are in format [longitude, latitude]</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-details-of-a-location">Get details of a location</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/location/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce918113446f5c8c28b8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-29T21:18:42.684Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:20:49.271Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMU"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"58d2cef38113446f5c8c28b9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"58d2cf008113446f5c8c28ba"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"58dc24b2e235562ddbc9f22c"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"geo_loc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce918113446f5c8c28b8"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/location/&lt;locationID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>locationId</td>
+<td>ID of location</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-location">Update a Location</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/location/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+{
+    "name" : "CMU Campus"
+}
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce918113446f5c8c28b8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-29T21:18:42.684Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:20:49.271Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CMU Campus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"58d2cef38113446f5c8c28b9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"58d2cf008113446f5c8c28ba"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"58dc24b2e235562ddbc9f22c"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"geo_loc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce918113446f5c8c28b8"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /api/location/&lt;locationId&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>locationId</td>
+<td>ID of location to update</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request body</h3>
+
+<p>The request body can include one or more of the fields below that need to be updated.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">type</td>
+<td style="text-align: left">Enum {BUILDING, INDOOR}</td>
+</tr>
+<tr>
+<td style="text-align: left">test</td>
+<td style="text-align: left">Boolean</td>
+</tr>
+<tr>
+<td style="text-align: left">geo_loc.type</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">geo_loc.coordinates</td>
+<td style="text-align: left">Number</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-location">Delete a location</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/location/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/location/&lt;locationId&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>locationId</td>
+<td>ID of location to delete</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> If a location has child locations, devices or gateways, then it cannot be deleted. </aside>
+
+<h2 id="get-gateways-at-a-location">Get gateways at a location</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/location/58d2cf268113446f5c8c28bc/gateways</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc5e8ee235562ddbc9f22e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T01:25:34.907Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T01:25:34.907Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lora Gateway"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc5e8ee235562ddbc9f22e"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/location/&lt;locationId&gt;/gateways</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>locationId</td>
+<td>ID of location</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-devices-at-a-location">Get devices at a location</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/location/58d2cf268113446f5c8c28bc/devices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="p">,</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device1"</span><span class="p">,</span><span class="w">
+    </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0330b37ba77a17bfbd0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="err">`</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/location/&lt;locationId&gt;/devices</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>locationId</td>
+<td>ID of location</td>
+</tr>
+</tbody></table>
+
+<h2 id="recursively-get-all-devices-at-all-child-locations">Recursively get all devices at all child locations</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/location/58d2cf268113446f5c8c28bc/alldevices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor1"</span><span class="p">,</span><span class="w">
+  </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"5985343de0d1a47181511cfe"</span><span class="p">,</span><span class="w">
+  </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+    </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0330b37ba77a17bfbd0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0330b37ba77a17bfbd0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0110b37ba77a17bfbce"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor2"</span><span class="p">,</span><span class="w">
+  </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853448e0d1a47181511cff"</span><span class="p">,</span><span class="w">
+  </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+    </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0110b37ba77a17bfbce"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0110b37ba77a17bfbce"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd04f0b37ba77a17bfbd1"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor3"</span><span class="p">,</span><span class="w">
+  </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"5985345ce0d1a47181511d00"</span><span class="p">,</span><span class="w">
+  </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+    </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd04f0b37ba77a17bfbd1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd04f0b37ba77a17bfbd1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd01b0b37ba77a17bfbcf"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor4"</span><span class="p">,</span><span class="w">
+  </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853aa5e0d1a47181511d01"</span><span class="p">,</span><span class="w">
+  </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+    </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd01b0b37ba77a17bfbcf"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd01b0b37ba77a17bfbcf"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0570b37ba77a17bfbd2"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor5"</span><span class="p">,</span><span class="w">
+  </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853aade0d1a47181511d02"</span><span class="p">,</span><span class="w">
+  </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+    </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0570b37ba77a17bfbd2"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0570b37ba77a17bfbd2"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="err">_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0660b37ba77a17bfbd3"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"device floor5 2"</span><span class="p">,</span><span class="w">
+  </span><span class="err">location_id</span><span class="p">:</span><span class="w"> </span><span class="s2">"59853aade0d1a47181511d02"</span><span class="p">,</span><span class="w">
+  </span><span class="err">pubsub</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+    </span><span class="err">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s2">"openchirp/devices/598dd0660b37ba77a17bfbd3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"598dd0660b37ba77a17bfbd3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/location/&lt;locationId&gt;/alldevices</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>locationId</td>
+<td>ID of location</td>
+</tr>
+</tbody></table>
+
+          <h1 id="device">Device</h1>
+
+<h2 id="create-new-device">Create new Device</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/device</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">  "name":"Lab Door",</span>
+<span class="s">  "location_id":"58d2cf268113446f5c8c28bc"</span>
+<span class="s">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dd50c4e235562ddbc9f231"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T19:39:56.719Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T18:39:00.265Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lab Door"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58dd50c4e235562ddbc9f231"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dd50c4e235562ddbc9f231"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/device</code></p>
+
+<h3 id="request-body">Request body</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Name of device</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">type</td>
+<td style="text-align: left">Enum {LORA, TWIST, FIREFLY, BOSCH_XDK}</td>
+<td style="text-align: left">Type of device.</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">location_id</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Location ID</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">gateway_id</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Gateway ID</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">enabled</td>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">If set to false, then the device is not monitored</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">True</td>
+</tr>
+<tr>
+<td style="text-align: left">properties</td>
+<td style="text-align: left">Mixed</td>
+<td style="text-align: left">JSON object that can include any number of key-value pairs</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-new-device-using-a-template">Create new Device using a template</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/device</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">  "name":"Lab Door",</span>
+<span class="s">  "location_id":"58d2cf268113446f5c8c28bc",</span>
+<span class="s">  "template_id":"58d443b5d0222f0b71c5da83"</span>
+<span class="s">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dd50c4e235562ddbc9f231"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T19:39:56.719Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T18:39:00.265Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lab Door"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open Door"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d46d8113446f5c8c28c4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Close Door"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4798113446f5c8c28c5"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Door_State"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integer"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58dd50c4e235562ddbc9f231"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dd50c4e235562ddbc9f231"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/device</code></p>
+
+<h3 id="request-body">Request body</h3>
+
+<p>All the fields in the create device request above can be included plus a template_id which is used to create transducers, commands and linked services.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">template_id</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Device template ID. All transducers, commands and linked services in the template will be added to the device.</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-details-of-a-device">Get details of a device</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/58d445bc2881ee1032d63508</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d445bc2881ee1032d63508"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T22:01:32.151Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T22:01:32.151Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lora Device6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58d445bc2881ee1032d63508"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d445bc2881ee1032d63508"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/device/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of device</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-device">Update a device</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/device/58d445bc2881ee1032d63508</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+{
+    "type": "LORA"
+}
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d445bc2881ee1032d63508"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T22:01:32.151Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T22:01:32.151Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lora Device6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58d445bc2881ee1032d63508"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d445bc2881ee1032d63508"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /api/device/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of device to update</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request body</h3>
+
+<p>The request body can include one or more of the fields below that need to be updated.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">type</td>
+<td style="text-align: left">Enum {LORA, TWIST, FIREFLY, BOSCH_XDK}</td>
+</tr>
+<tr>
+<td style="text-align: left">location_id</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">gateway_id</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">enabled</td>
+<td style="text-align: left">Boolean</td>
+</tr>
+<tr>
+<td style="text-align: left">properties</td>
+<td style="text-align: left">Mixed</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-device">Delete a device</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/device/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of device to delete</td>
+</tr>
+</tbody></table>
+
+          <h1 id="transducer">Transducer</h1>
+
+<h2 id="add-a-transducer-to-a-device">Add a transducer to a device</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">  "name":"Temperature",</span>
+<span class="s">  "unit":"Celsius",</span>
+<span class="s">  "properties":{</span>
+<span class="s">    "protobuf":"uint:32"</span>
+<span class="s">    }  </span>
+<span class="s">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Celsius"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protobuf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uint:32"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58ddc5c9e235562ddbc9f234"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/device/&lt;deviceId&gt;/transducer</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceId</td>
+<td>Transducer is added to the device identified by its ID</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request body</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Name of transducer , example : Temperature</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">unit</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Unit , example : Celsius</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">is_actuable</td>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">If the transducer is actuable</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">False</td>
+</tr>
+<tr>
+<td style="text-align: left">properties</td>
+<td style="text-align: left">Mixed</td>
+<td style="text-align: left">JSON object that can include any number of key-value pairs</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-all-transducers-on-a-device">Get all transducers on a device</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Door_State"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Celsius"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protobuf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uint:32"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58ddc5c9e235562ddbc9f234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/device/&lt;deviceID&gt;/transducer</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td>ID of device</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-transducer">Update a transducer</h2>
+
+<p>Updating a transducer is not supported by design.</p>
+
+<h2 id="publish-to-a-transducer">Publish to a transducer</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+{
+"test":"Hello"
+}
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Done"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/device/&lt;deviceID&gt;/transducer/&lt;transducerID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td>ID of device.</td>
+</tr>
+<tr>
+<td>transducerID</td>
+<td>ID of transducer to publish to.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request Body</h3>
+
+<p>The json in the request body is published as-is to the transducer topic.</p>
+
+<h2 id="get-values-from-a-transducer">Get values from a transducer</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/590b8ab0c1d7ee2313ee421c/transducer/590cf1d043fc916594746b1b</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Using <code class="prettyprint">cURL</code>:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -G <span class="s2">"http://openchirp.andrew.cmu.edu:7000/api/device/590b8ab0c1d7ee2313ee421c/transducer/590cf1d043fc916594746b1b"</span>
+</code></pre>
+<blockquote>
+<p>Example Response. Returns <strong>all values in a chunked stream</strong> (chunks have a size of 10,000 points), ordered by ascending time order:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"590b8ab0c1d7ee2313ee421c_door_state"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+            </span><span class="err">//</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">values</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">returned</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">chunked</span><span class="w"> </span><span class="err">stream</span><span class="w"> 
+            </span><span class="err">...</span><span class="w">
+</span></code></pre>
+<p>Performing an HTTP GET to a transducer resource will return the values stored in the database in ascending time order. 
+Additional parameters allow you to define start and end times, maximum number of returned values, and paginate through the values.</p>
+
+<p>The default output format is JSON. It is possible to specify the output format using the Content-Type HTTP header, where:</p>
+
+<ol>
+<li><code class="prettyprint">text/csv</code> or <code class="prettyprint">application/csv</code> specifies CSV output</li>
+<li>any other content type will produce JSON output (default)</li>
+</ol>
+
+<aside class="notice"> 
+By default, results are returned in a chunked stream (chunks have a size of 10,000 points).
+</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/device/&lt;deviceID&gt;/transducer/&lt;transducerID&gt;?[stime=&lt;stime&gt;&amp;etime=&lt;etime&gt;&amp;limit=&lt;limit&gt;&amp;page=&lt;page&gt;]</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td>ID of device.</td>
+</tr>
+<tr>
+<td>transducerID</td>
+<td>ID of transducer</td>
+</tr>
+<tr>
+<td>stime</td>
+<td>See <a href="#Start-and-End-Times">Start and End Times</a></td>
+</tr>
+<tr>
+<td>etime</td>
+<td>See <a href="#Start-and-End-Times">Start and End Times</a></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>See <a href="#Limit-and-Paginating">Limit and Paginating</a></td>
+</tr>
+<tr>
+<td>page</td>
+<td>See <a href="#Limit-and-Paginating">Limit and Paginating</a></td>
+</tr>
+</tbody></table>
+
+<p>Parameters <code class="prettyprint">stime</code>, <code class="prettyprint">etime</code>, <code class="prettyprint">limit</code> and <code class="prettyprint">page</code> are not mandatory, and they can be freely combined, for example to return 5000 results (<code class="prettyprint">limit=5000</code>) from a week ago (<code class="prettyprint">stime=now - 1w</code>).</p>
+
+<h3 id="start-and-end-times">Start and End Times</h3>
+
+<blockquote>
+<p>Example Request. Return values from the last week, by passing <code class="prettyprint">stime=now() - 1w</code> (note parameters are URL encoded and there must be spaces (%20) in the time specification):</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3%20%3Fstime%3Dnow%28%29%20-%201w</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Using <code class="prettyprint">cURL</code> (note the <code class="prettyprint">--data-urlencode</code> and the spaces in the time specification):</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -G <span class="s2">"http://openchirp.andrew.cmu.edu:7000/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3"</span> --data-urlencode “stime<span class="o">=</span>now<span class="o">()</span> - 1w<span class="s2">"
+</span></code></pre>
+<p>It is possible to define start and end times using the <code class="prettyprint">stime</code> and <code class="prettyprint">etime</code> query string parameters. The time specifications are according to <a href="https://docs.influxdata.com/influxdb/v0.9/query_language/data_exploration/#time-syntax-in-queries">InfluxDB</a>. </p>
+
+<p>For example, <code class="prettyprint">stime=now() - 1w</code> indicates that the query will return values starting one week ago. 
+You can use simular time specifications using ‘d’ (days), ‘h’ (hours), ‘m’ (minutes), ’s’ (seconds), ‘ms’ (milliseconds) and ‘u’ (microseconds).</p>
+
+<p>Other time specification examples:</p>
+
+<ol>
+<li><code class="prettyprint">stime=stime=now() - 1w&amp;etime=stime=now() - 1d</code>: values from one week ago until yesterday.</li>
+<li><code class="prettyprint">stime=stime=2015-08-18 23:00:01.232000000&amp;etime=stime=2015-09-19</code>: values between August 18, 2015 23:00:01.232000000 and September 19, 2015 00:00:00.</li>
+</ol>
+
+<p>Please check <a href="https://docs.influxdata.com/influxdb/v0.9/query_language/data_exploration/#time-syntax-in-queries">InfluxDB’s documentation section on Time syntax in Queries</a> for details.</p>
+
+<aside class="notice"> 
+The spaces between the ‘-‘ operator of time specifications are important. Be sure to URL encode parameters (see examples). 
+</aside>
+
+<h3 id="limit-and-paginating">Limit and Paginating</h3>
+
+<blockquote>
+<p>Example Request. Return the first 5000 values from a week ago in CSV format:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3%20%3Fstime%3Dnow%28%29%20-%201w%26limit%3D5000</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+Content-Type: application/csv
+</code></pre>
+<blockquote>
+<p>Using <code class="prettyprint">cURL</code>:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Content-Type: application/csv"</span> -G <span class="s2">"http://openchirp.andrew.cmu.edu:7000/api/device/&lt;deviceID&gt;/transducer/&lt;transducerID&gt;"</span> --data-urlencode <span class="s2">"limit=5000"</span> --data-urlencode <span class="s2">"stime=now() - 1w"</span>
+</code></pre>
+<p>You can set a limit to the number of points returned using the <code class="prettyprint">limit</code> query string parameter, which can have a maximum value of 10,000 (<code class="prettyprint">limit=0</code> is equal to <code class="prettyprint">limit=10000</code>). </p>
+
+<p>The parameter <code class="prettyprint">page</code> can be used to paginate thought the results, where each page has a size defined by the <code class="prettyprint">limit</code> argument or defaults to 10,000 if no <code class="prettyprint">limit</code> is given.</p>
+
+<aside class="notice"> 
+When you provide a <b>limit</b> or <b>page</b> parameter, results are returned in a single (non-chunked) response.
+</aside>
+
+<h2 id="delete-a-transducer">Delete a transducer</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/transducer/58d2d4398113446f5c8c28c3</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/device/&lt;deviceID&gt;/transducer/&lt;transducerID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td>ID of device.</td>
+</tr>
+<tr>
+<td>transducerID</td>
+<td>ID of transducer to delete</td>
+</tr>
+</tbody></table>
+
+          <h1 id="command">Command</h1>
+
+<h2 id="create-new-command">Create new Command</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/device/58d445bc2881ee1032d63508/command</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">  "name":"Open Door",</span>
+<span class="s">  "transducer_id":"58d2d4398113446f5c8c28c3",</span>
+<span class="s">  "value" :"1"</span>
+<span class="s">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open Door"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d46d8113446f5c8c28c4"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/device/&lt;deviceID&gt;/command</code></p>
+
+<h3 id="request-body">Request body</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Name of command, example: Open Door</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">transducer_id</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Transducer to publish value to</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">value</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Value to publish to transducer</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Commands can only be created for transducers that have is_actuable set to true.</aside>
+
+<h2 id="get-all-commands-on-a-device">Get all commands on a device</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/command</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open Door"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d46d8113446f5c8c28c4"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Close Door"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4798113446f5c8c28c5"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/device/&lt;deviceID&gt;/command</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="execute-a-command">Execute a command</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/command/58d445bc2881ee1032d63508</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+</span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Done"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/device/&lt;deviceID&gt;/command/&lt;commandID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td>ID of device</td>
+</tr>
+<tr>
+<td>commandID</td>
+<td>ID of command to execute</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-command">Update a command</h2>
+
+<p>Not supported.</p>
+
+<h2 id="delete-a-command">Delete a command</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/device/582e2b2c065b2545ded3aabd/command/58d445bc2881ee1032d63508</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/device/&lt;deviceID&gt;/command/&lt;commandID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceID</td>
+<td>ID of command&rsquo;s device.</td>
+</tr>
+<tr>
+<td>commandID</td>
+<td>ID of command to delete.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="service">Service</h1>
+
+<h2 id="get-all-services">Get all services</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/service</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+
+<h2 id="create-new-service">Create new Service</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/service</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">  "name":"InfluxDB Storage Service",</span>
+<span class="s">  "description": "Service that stores all device transducer data into InfluxDB"</span>
+
+}
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d1a48113446f5c8c28bf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:33:56.232Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:33:56.232Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InfluxDB Storage Service"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service that stores all device transducer data into InfluxDB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"config_required"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remove_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/remove"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"update_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/update"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"new_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/new"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d1a48113446f5c8c28bf"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/service</code></p>
+
+<h3 id="request-body">Request body</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Name of service, example: InfluxDBStorageService.</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">description</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A short description of what this service does.</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">properties</td>
+<td style="text-align: left">Mixed</td>
+<td style="text-align: left">Custom properties of this service. JSON object that can include any number of key-value pairs</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">config_required</td>
+<td style="text-align: left">ThingsConfig</td>
+<td style="text-align: left">Config required from things when they link to this service.</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-details-of-a-service">Get details of a service</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/service/58d2d1a48113446f5c8c28bf</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d1a48113446f5c8c28bf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:33:56.232Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:33:56.232Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InfluxDB Storage Service"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service that stores all device transducer data into InfluxDB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"config_required"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remove_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/remove"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"update_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/update"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"new_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/new"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d1a48113446f5c8c28bf"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/service/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of service</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-service">Update a service</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/service/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+{
+    "name" : ""
+}
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /api/service/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of service to update</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request body</h3>
+
+<p>The request body can include one or more of the fields below that have to updated.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">description</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">properties</td>
+<td style="text-align: left">Mixed</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-service">Delete a service</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/service/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/service/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of service to delete</td>
+</tr>
+</tbody></table>
+
+<h2 id="add-a-device-to-a-service">Add a device to a service</h2>
+
+<h2 id="update-device-service-config">Update device service config</h2>
+
+<h2 id="remove-a-device-from-a-service">Remove a device from a service</h2>
+
+<h2 id="get-all-things-linked-to-a-service">Get all things linked to a service</h2>
+
+          <h1 id="device-template">Device Template</h1>
+
+<h2 id="get-all-device-templates">Get all device templates</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/devicetemplate</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d443b5d0222f0b71c5da83"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T21:52:53.580Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T21:52:53.580Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lora Template1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Template with 3 transducers with properties"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d442c7d0222f0b71c5da82"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Celsius"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"protobuf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uint:1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pressure"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Psi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"protobuf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uint:2"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Voltage"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"protobuf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uint:3"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d443b5d0222f0b71c5da83"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/devicetemplate</code></p>
+
+<h2 id="create-new-device-template">Create new device template</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/devicetemplate</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">  "name":"Lora Template",</span>
+<span class="s">  "device_id":"58d445bc2881ee1032d63508"  </span>
+<span class="s">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/devicetemplate</code></p>
+
+<h3 id="request-body">Request body</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Name of device template Yes</td>
+<td style="text-align: left">-</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">description</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">A short description of what this template contains.</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">device_id</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">ID of device from which to generate this template</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-details-of-a-template">Get details of a template</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/devicetemplate/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/devicetemplate/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of device template</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-device-template">Update a device template</h2>
+
+<p>Not supported.</p>
+
+<h2 id="delete-a-device-template">Delete a device template</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/devicetemplate/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/devicetemplate/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of device template to delete</td>
+</tr>
+</tbody></table>
+
+          <h1 id="gateway">Gateway</h1>
+
+<h2 id="create-new-gateway">Create new Gateway</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/gateway</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="s">{</span>
+<span class="s">    "name": "Lora Gateway",</span>
+<span class="s">    "location_id": "58d2cf268113446f5c8c28bc",</span>
+<span class="s">    "type": "LORA"</span>
+<span class="s">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc5e8ee235562ddbc9f22e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T01:25:34.907Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T01:25:34.907Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lora Gateway"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc5e8ee235562ddbc9f22e"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/gateway</code></p>
+
+<h3 id="request-body">Request Body</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+<th style="text-align: left">Required</th>
+<th style="text-align: left">Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Name of gateway</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">type</td>
+<td style="text-align: left">Enum {LORA, ZIGBEE}</td>
+<td style="text-align: left">Type of gateway.</td>
+<td style="text-align: left">Yes</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">location_id</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Location ID</td>
+<td style="text-align: left"></td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">enabled</td>
+<td style="text-align: left">Boolean</td>
+<td style="text-align: left">If set to false, then the gateway is not monitored</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">True</td>
+</tr>
+<tr>
+<td style="text-align: left">properties</td>
+<td style="text-align: left">Mixed</td>
+<td style="text-align: left">JSON object that can include any number of key-value pairs</td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-all-gateways">Get all gateways</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/gateway</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5873dfefc653394e3f0966b9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LabGateway"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5833479babdafd7b34858958"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"587e9cf0ee4cf540f8590784"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CICGateway"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5833479babdafd7b34858958"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+ </span><span class="p">]</span><span class="w">    
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/gateway</code></p>
+
+<h2 id="get-details-of-a-gateway">Get details of a gateway</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/gateway/58dc5e8ee235562ddbc9f22e</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc5e8ee235562ddbc9f22e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T01:25:34.907Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T01:25:34.907Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lora Gateway"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc5e8ee235562ddbc9f22e"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/gateway/&lt;gatewayID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>gatewayID</td>
+<td>ID of gateway</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-devices-linked-to-a-gateway">Get devices linked to a gateway</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/gateway/58dc5e8ee235562ddbc9f22e/devices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58de6b5ce235562ddbc9f235"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-31T14:44:44.557Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-31T14:44:44.557Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">" Lora Lab Device"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gateway_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc5e8ee235562ddbc9f22e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58de6b5ce235562ddbc9f235"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58de6b5ce235562ddbc9f235"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/gateway/&lt;gatewayID&gt;/devices</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>gatewayID</td>
+<td>ID of gateway</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-gateway">Update gateway</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/gateway/587e9cf0ee4cf540f8590784</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+{
+    "name" : "CICGateway_Lab"
+}
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"587e9cf0ee4cf540f8590784"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CICGateway_Lab"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5833479babdafd7b34858958"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /api/gateway/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of gateway to update</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request body</h3>
+
+<p>The request body can include one or more of the fields below that have to updated.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th style="text-align: left">Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">name</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">location_id</td>
+<td style="text-align: left">String</td>
+</tr>
+<tr>
+<td style="text-align: left">type</td>
+<td style="text-align: left">Enum</td>
+</tr>
+<tr>
+<td style="text-align: left">enabled</td>
+<td style="text-align: left">Boolean</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-gateway">Delete a gateway</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/gateway/582e2b2c065b2545ded3aabd</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/gateway/&lt;ID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of gateway to delete</td>
+</tr>
+</tbody></table>
+
+          <h1 id="user">User</h1>
+
+<h2 id="get-logged-in-user-details">Get Logged-In User Details</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:20:32.405Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:20:32.405Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test User"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/user</code></p>
+
+<h2 id="get-my-services">Get my services</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/user/myservices?name=influxdb</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d1a48113446f5c8c28bf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:33:56.232Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:33:56.232Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InfluxDB Storage Service"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service that stores all device transducer data into InfluxDB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"config_required"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remove_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/remove"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"update_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/update"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"new_thing_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf/thing/new"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/services/58d2d1a48113446f5c8c28bf"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d1a48113446f5c8c28bf"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/user/myservices?name=&lt;search_criteria&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Search by name (Optional)</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-my-devices">Get my devices</h2>
+
+<blockquote>
+<p>Example Request :</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/user/mydevices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response :</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3078113446f5c8c28c0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:46:01.186Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:39:51.961Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lab Door"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open Door"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"transducer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d46d8113446f5c8c28c4"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Door_State"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integer"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d4398113446f5c8c28c3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_actuable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58d2d3078113446f5c8c28c0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3078113446f5c8c28c0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3328113446f5c8c28c1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T16:07:55.655Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-22T19:40:34.101Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buildings"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2cf268113446f5c8c28bc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LORA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"linked_services"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d442c7d0222f0b71c5da82"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"commands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"transducers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"pubsub"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MQTT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/devices/58d2d3328113446f5c8c28c1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2d3328113446f5c8c28c1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/user/mydevices?name=&lt;search_criteria&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Search by name (Optional)</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-my-locations">Get my locations</h2>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/user/mylocations?name=pitt</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+</code></pre>
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">  
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc24b2e235562ddbc9f22c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-30T17:55:52.406Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-29T21:18:42.682Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58d2ce808113446f5c8c28b7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pitt Campus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"geo_loc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58dc24b2e235562ddbc9f22c"</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/user/mylocations/?name=&lt;search_criteria&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Search by name (Optional)</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
